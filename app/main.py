@@ -12,7 +12,7 @@ def make_frames(foreground: str, background: str, output_path: str):
     positions = bouncy(height=200, cor=0.75, total_frames=60)
     for i, (x, y) in enumerate(positions):
         bg = scene.copy()
-        pos = (150 + round(x), 512 - round(y) - 130)
+        pos = (150 + round(x), 382 - round(y))
         bg.paste(ball, pos, ball)
         bg.save(os.path.join(output_path, f"{i:0>2}.png"))
 
@@ -34,11 +34,11 @@ def make_movie(input_path: str, output_path: str):
 
 if __name__ == '__main__':
     make_frames(
-        os.path.join("app", "images", "ball.png"),
-        os.path.join("app", "images", "bg.png"),
-        os.path.join("app", "frames")
+        foreground=os.path.join("app", "images", "ball.png"),
+        background=os.path.join("app", "images", "bg.png"),
+        output_path=os.path.join("app", "frames"),
     )
     make_movie(
         input_path=os.path.join("app", "frames"),
-        output_path=os.path.join("app", "video", "bounce-ball.mp4")
+        output_path=os.path.join("app", "video", "bounce-ball.mp4"),
     )
